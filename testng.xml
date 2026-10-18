@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<!-- Chạy trong IntelliJ: chuột phải file này > Run. Thứ tự: Đăng ký -> Đăng nhập -> Giỏ hàng -> Thanh toán. -->
+<!-- Trước khi chạy: docker compose up -d và mở được http://localhost:8080 -->
+<suite name="PrestaShop Selenium Suite" verbose="1">
+    <test name="Dang ky tai khoan" preserve-order="true">
+        <classes>
+            <class name="tests.RegisterTest"/>
+        </classes>
+    </test>
+    <test name="Dang nhap" preserve-order="true">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+    <test name="Them san pham vao gio hang" preserve-order="true">
+        <classes>
+            <class name="tests.AddToCartTest"/>
+        </classes>
+    </test>
+    <test name="Thanh toan" preserve-order="true">
+        <classes>
+            <class name="tests.CheckoutTest"/>
+        </classes>
+    </test>
+</suite>

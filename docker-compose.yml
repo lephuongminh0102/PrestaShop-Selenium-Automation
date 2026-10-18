@@ -1,0 +1,30 @@
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: ps_mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: prestashop
+    volumes:
+      - ps_db_data:/var/lib/mysql
+
+  prestashop:
+    image: prestashop/prestashop:8-apache
+    container_name: ps_app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:80"
+    environment:
+      DB_SERVER: mysql
+      DB_NAME: prestashop
+      DB_PASSWD: ${DB_PASSWD}
+      PS_INSTALL_AUTO: 0
+      PS_DOMAIN: localhost:8080
+    volumes:
+      - ps_app_data:/var/www/html
+
+volumes:
+  ps_db_data:
+  ps_app_data:
